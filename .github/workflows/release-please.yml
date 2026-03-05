@@ -1,9 +1,8 @@
 name: release-please
 on:
-  workflow_call:
-    secrets:
-      AUTH_TOKEN:
-        required: true
+  push:
+    branches:
+      - master
 
 permissions:
   contents: write
