@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.3.0"
 kotlinxDatetime = "0.7.1"
-kotlinxSerializationJSON = "1.9.0"
+kotlinxSerializationJSON = "1.10.0"
 kotlinxCoroutines = "1.10.2"
 
 [libraries]
