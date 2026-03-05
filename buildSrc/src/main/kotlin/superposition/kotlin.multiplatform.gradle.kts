@@ -9,6 +9,7 @@ plugins {
 
 kotlin {
     jvmToolchain(17)
+    explicitApi()
 
     iosX64()
     iosArm64()

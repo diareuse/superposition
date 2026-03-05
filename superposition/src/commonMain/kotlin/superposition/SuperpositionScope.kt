@@ -3,12 +3,12 @@
 
 package superposition
 
-class SuperpositionScope<F : Any> @PublishedApi internal constructor(
+public class SuperpositionScope<F : Any> @PublishedApi internal constructor(
     @PublishedApi
     internal val unwrap: Superposition.Unwrap<F>
 ) {
 
-    inline fun <S1, S2> Sp<S1, F>.map(body: (S1) -> S2): Sp<S2, F> = peek(onSuccess = {
+    public inline fun <S1, S2> Sp<S1, F>.map(body: (S1) -> S2): Sp<S2, F> = peek(onSuccess = {
         return superposition(unwrap) {
             body(
                 it
@@ -16,16 +16,16 @@ class SuperpositionScope<F : Any> @PublishedApi internal constructor(
         }
     }) as Sp<S2, F>
 
-    inline fun <S1, S2> Sp<S1, F>.flatMap(body: (S1) -> Sp<S2, F>): Sp<S2, F> = peek(onSuccess = {
+    public inline fun <S1, S2> Sp<S1, F>.flatMap(body: (S1) -> Sp<S2, F>): Sp<S2, F> = peek(onSuccess = {
         return superposition(unwrap) {
             return body(it)
         } as Sp<S2, F>
     }) as Sp<S2, F>
 
-    inline fun <S> Sp<S, F>.onSuccess(body: (S) -> Unit) =
+    public inline fun <S> Sp<S, F>.onSuccess(body: (S) -> Unit): Sp<S, F> =
         peek(onSuccess = body)
 
-    inline fun <S> Sp<S, F>.onFailure(body: (F) -> Unit) =
+    public inline fun <S> Sp<S, F>.onFailure(body: (F) -> Unit): Sp<S, F> =
         peek(onFailure = body)
 
 }

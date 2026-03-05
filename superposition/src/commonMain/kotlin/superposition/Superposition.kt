@@ -5,15 +5,15 @@ package superposition
 
 import kotlin.jvm.JvmInline
 
-typealias Sp<Success, Failure> = Superposition<Success, Failure>
+public typealias Sp<Success, Failure> = Superposition<Success, Failure>
 
 @JvmInline
-value class Superposition<Success, Failure : Any> private constructor(
+public value class Superposition<Success, Failure : Any> private constructor(
     @PublishedApi
     internal val value: Any?
 ) {
 
-    inline fun handle(onFailure: (Failure) -> Nothing): Success {
+    public inline fun handle(onFailure: (Failure) -> Nothing): Success {
         when (value) {
             is Error -> onFailure(value.value as Failure)
             else -> return value as Success
@@ -35,11 +35,11 @@ value class Superposition<Success, Failure : Any> private constructor(
     @PublishedApi
     internal class Error(val value: Any)
 
-    interface Unwrap<F> {
-        fun map(error: Throwable): F
+    public interface Unwrap<F> {
+        public fun map(error: Throwable): F
     }
 
-    companion object {
+    public companion object {
 
         @SuperpositionInternalApi
         @PublishedApi
@@ -53,20 +53,20 @@ value class Superposition<Success, Failure : Any> private constructor(
 }
 
 @Suppress("UNCHECKED_CAST")
-inline fun <S, F : Any> superposition(
+public inline fun <S, F : Any> superposition(
     unwrap: Superposition.Unwrap<F>,
     block: SuperpositionScope<F>.() -> S
-) = try {
+): Sp<S, F> = try {
     Sp.success(block(SuperpositionScope(unwrap)))
 } catch (e: Throwable) {
     Sp.failure(unwrap.map(e))
 } as Sp<S, F>
 
 @Suppress("UNCHECKED_CAST")
-inline fun <S, F : Any> flatSuperposition(
+public inline fun <S, F : Any> flatSuperposition(
     unwrap: Superposition.Unwrap<F>,
     block: SuperpositionScope<F>.() -> Sp<S, F>
-) = try {
+): Sp<S, F> = try {
     block(SuperpositionScope(unwrap))
 } catch (e: Throwable) {
     Sp.failure(unwrap.map(e))
