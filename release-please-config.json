@@ -2,6 +2,8 @@
   "always-update": true,
   "include-v-in-tag": false,
   "release-type": "simple",
+  "bump-minor-pre-major": true,
+  "prerelease": true,
   "packages": {
     ".": {
       "changelog-path": "CHANGELOG.md"
