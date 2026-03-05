@@ -1,10 +1,20 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
 package superposition
 
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     kotlin("multiplatform")
     id("com.vanniktech.maven.publish")
+    id("com.diffplug.spotless")
+}
+
+spotless {
+    kotlin {
+        ktlint()
+    }
 }
 
 kotlin {
@@ -44,6 +54,10 @@ kotlin {
     }
 
     mingwX64()
+
+    compilerOptions {
+        allWarningsAsErrors = true
+    }
 }
 
 tasks.withType<Test>().configureEach {
