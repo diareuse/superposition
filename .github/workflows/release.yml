@@ -21,10 +21,12 @@ jobs:
           echo "mavenCentralPassword=$OSSRH_PASSWORD" >> gradle.properties 
           echo "signingInMemoryKey=$SIGNING_KEY" >> gradle.properties 
           echo "signingInMemoryKeyId=$SIGNING_KEY_ID" >> gradle.properties
+          echo "VERSION_NAME=$VERSION_NAME" >> gradle.properties
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+          VERSION_NAME: ${{ github.ref_name }}
 
       - run: ./gradlew publish
