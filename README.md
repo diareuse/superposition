@@ -11,6 +11,16 @@ minimize object allocation overhead while providing a robust, functional approac
 * 🔗 **Functional Composition**: Includes standard operators like `map` and `recover`.
 * 🍬 **Syntactic Sugar**: Operator overloading for concise syntax.
 
+## Implementation
+
+![Maven Central Version](https://img.shields.io/maven-central/v/io.github.diareuse/superposition-core)
+
+```kotlin
+dependencies {
+    implementation("io.github.diareuse:superposition-core:<latest-version>")
+}
+```
+
 ## Usage
 
 ### 1. The Core Concept
