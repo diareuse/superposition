@@ -7,7 +7,8 @@ kotlin {
 }
 
 dependencies {
-    implementation(libs.kotlinGradlePlugin)
-    implementation("com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin:0.36.0")
-    implementation("com.diffplug.spotless:com.diffplug.spotless.gradle.plugin:8.3.0")
+    implementation(libs.kotlin.gradle)
+    implementation(libs.android.gradle)
+    implementation(libs.vanniktech.publish)
+    implementation(libs.diffplug.spotless)
 }

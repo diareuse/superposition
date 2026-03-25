@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     kotlin("multiplatform")
+    id("com.android.kotlin.multiplatform.library")
     id("com.vanniktech.maven.publish")
     id("com.diffplug.spotless")
 }
@@ -20,6 +21,12 @@ spotless {
 kotlin {
     jvmToolchain(17)
     explicitApi()
+
+    android {
+        compileSdk {
+            version = release(36)
+        }
+    }
 
     iosX64()
     iosArm64()
